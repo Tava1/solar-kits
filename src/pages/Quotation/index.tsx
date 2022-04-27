@@ -55,7 +55,7 @@ export const Quotation = () => {
 
 					<QuotationParametersContainer>
 						<QuotationParameters title="Estrutura" description="Fibrocimento Metálico" />
-						<QuotationParameters title="Cotação solicitada" description="2900" />
+						<QuotationParameters title="Valor da conta de luz" description="2900" />
 						<QuotationParameters title="CEP" description="06543-001" />
 					</QuotationParametersContainer>
 

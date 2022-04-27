@@ -4,9 +4,9 @@ Este projeto tem como objetivo servir os dados de uma cotação/orçamento de in
 Os dados são disponibilizados por meio de uma API, para realizar as requisições foi utilizado o pacote ```axios```, juntamente com uma
 ferramente que utiliza o conceito de stale-while-revalidate ```react-query```.
 
-## Visite o site :link:s
+## Visite o site :link:
 
-A aplicação pode ser visitada a qualquer momento pelo link: []()
+A aplicação pode ser visitada a qualquer momento pelo link: [https://solar-kits.vercel.app/](https://solar-kits.vercel.app/)
 
 ## Sobre o projeto
 
