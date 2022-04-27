@@ -92,7 +92,7 @@ export const Quotation = () => {
 							<input type="number" value={price} onBlur={(e) => setPrice(e.target.value)} />
 						</div> */}
 
-						<QuotationParameters title="Estrutura" description="Fibrocimento Metálico" />
+						<QuotationParameters title="Estrutura" description={type} />
 						<QuotationParameters title="Valor da conta de luz" description="2900" />
 						<QuotationParameters title="CEP" description="06543-001" />
 					</QuotationParametersContainer>
