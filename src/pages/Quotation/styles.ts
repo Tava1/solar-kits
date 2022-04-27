@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const Structure = styled.section`
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+
+	select {
+		width: 200px;
+	}
+`;
+
 export const QuotationParametersContainer = styled.section`
 	margin: 2rem 0;
 	display: flex;
@@ -66,8 +76,14 @@ export const Summary = styled.section`
 	.sub-price {
 		margin-bottom: 2rem;
 
-		p:last-child {
+		button {
+			cursor: pointer;
+			border: 0;
+			background: transparent;
+			color: var(--top-text);
 			text-decoration: underline;
+			font-size: 1rem;
+			font-weight: 300;
 		}
 	}
 `;

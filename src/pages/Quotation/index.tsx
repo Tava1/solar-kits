@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { FaGithub } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import {
@@ -9,7 +10,7 @@ import {
 	Loading,
 } from '@/components';
 import { useFetch } from '@/hooks/useFetch';
-import { GetQuotation, Kit } from '@/types/Quotation.types';
+import { GetQuotation, Installment, Kit } from '@/types/Quotation.types';
 
 import {
 	QuotationParametersContainer,
@@ -17,31 +18,49 @@ import {
 	TitleSection,
 	Footer,
 	Summary,
+	Structure,
 } from './styles';
 import { ProductDescriptionContext } from '@/context/ProductDescriptioContext';
+import { InstallmentContext } from '@/context/InstallmentContext';
+import { InstallmentModal } from '@/components/InstallmentModal';
 
 const CACHE_KEY = 'quotation';
 const END_POINT = 'busca-cep';
 
 export const Quotation = () => {
 	const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
-	const { response, isLoading, isError } = useFetch<GetQuotation>(CACHE_KEY, END_POINT, {
+	const [isInstallmentModalOpen, setIsInstallmentModalOpen] = useState(false);
+
+	const [type, setType] = useState('fibrocimento-metalico');
+	// const [price, setPrice] = useState('');
+
+	const { response, isLoading, isError } = useFetch<GetQuotation>(CACHE_KEY, END_POINT, type, {
 		params: {
-			estrutura: 'fibrocimento-metalico',
-			valor_conta: '2900',
+			estrutura: type,
+			valor_conta: '2500',
 			cep: '06543-001',
 		},
 	});
 
-	const modalContext = useContext(ProductDescriptionContext);
+	const descriptionModalContext = useContext(ProductDescriptionContext);
+	const installmentModalContext = useContext(InstallmentContext);
 
 	const handleOpenProductDescription = (product: Kit) => {
 		setIsDescriptionModalOpen(true);
-		modalContext.setCurrentProduct(product);
+		descriptionModalContext.setCurrentProduct(product);
 	};
 
 	const handleCloseProductDescription = () => {
 		setIsDescriptionModalOpen(false);
+	};
+
+	const handleOpenInstallment = (installment: Installment[]) => {
+		setIsInstallmentModalOpen(true);
+		installmentModalContext.setInstallment(installment);
+	};
+
+	const handleCloseInstallment = () => {
+		setIsInstallmentModalOpen(false);
 	};
 
 	return (
@@ -53,7 +72,26 @@ export const Quotation = () => {
 				<>
 					<TopBar />
 
+					<Structure>
+						<label htmlFor="structure">Estrutura</label>
+						<select
+							value={type}
+							onChange={(e) => setType(e.target.value)}
+							name="structure"
+							id="structure">
+							<option value="fibrocimento-metalico">Fibrocimento Metálico</option>
+							<option value="ceramico">Cerâmico</option>
+							<option value="metalico">Metálico</option>
+							<option value="laje ou solo">Laje ou solo</option>
+						</select>
+					</Structure>
+
 					<QuotationParametersContainer>
+						{/* <div>
+							<label htmlFor="structure">Estrutura</label>
+							<input type="number" value={price} onBlur={(e) => setPrice(e.target.value)} />
+						</div> */}
+
 						<QuotationParameters title="Estrutura" description="Fibrocimento Metálico" />
 						<QuotationParameters title="Valor da conta de luz" description="2900" />
 						<QuotationParameters title="CEP" description="06543-001" />
@@ -115,7 +153,9 @@ export const Quotation = () => {
 									response.parcelamento[response.parcelamento.length - 1].valor_maximo,
 								)}
 							</p>
-							<p>Verificar condições de parcelamento</p>
+							<button type="button" onClick={() => handleOpenInstallment(response.parcelamento)}>
+								Verificar condições de parcelamento
+							</button>
 						</div>
 
 						<div className="total-price">
@@ -139,6 +179,11 @@ export const Quotation = () => {
 					<ProductDescriptionModal
 						isOpen={isDescriptionModalOpen}
 						onRequestClose={handleCloseProductDescription}
+					/>
+
+					<InstallmentModal
+						isOpen={isInstallmentModalOpen}
+						onRequestClose={handleCloseInstallment}
 					/>
 				</>
 			)}
