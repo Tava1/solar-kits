@@ -1,7 +1,16 @@
 import { FaGithub } from 'react-icons/fa';
-import { ProductItem, IndicatorCard, TopBar, QuotationParameters } from '@/components';
+import { useContext, useState } from 'react';
+import {
+	ProductItem,
+	IndicatorCard,
+	TopBar,
+	QuotationParameters,
+	ProductDescriptionModal,
+	Loading,
+} from '@/components';
 import { useFetch } from '@/hooks/useFetch';
-import { GetQuotation } from './Quotation.types';
+import { GetQuotation, Kit } from '@/types/Quotation.types';
+
 import {
 	QuotationParametersContainer,
 	PotentialContainer,
@@ -9,12 +18,14 @@ import {
 	Footer,
 	Summary,
 } from './styles';
+import { ProductDescriptionContext } from '@/context/ProductDescriptioContext';
 
 const CACHE_KEY = 'quotation';
 const END_POINT = 'busca-cep';
 
 export const Quotation = () => {
-	const { response, isFetching, isError } = useFetch<GetQuotation>(CACHE_KEY, END_POINT, {
+	const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
+	const { response, isLoading, isError } = useFetch<GetQuotation>(CACHE_KEY, END_POINT, {
 		params: {
 			estrutura: 'fibrocimento-metalico',
 			valor_conta: '2900',
@@ -22,10 +33,21 @@ export const Quotation = () => {
 		},
 	});
 
+	const modalContext = useContext(ProductDescriptionContext);
+
+	const handleOpenProductDescription = (product: Kit) => {
+		setIsDescriptionModalOpen(true);
+		modalContext.setCurrentProduct(product);
+	};
+
+	const handleCloseProductDescription = () => {
+		setIsDescriptionModalOpen(false);
+	};
+
 	return (
 		<>
 			{isError && <span>Erro</span>}
-			{isFetching && <span>Procurando</span>}
+			{isLoading && <Loading />}
 
 			{response && (
 				<>
@@ -79,6 +101,7 @@ export const Quotation = () => {
 								subPrice={kit.valor}
 								totalPrice={kit.valueTotal}
 								image={kit.url}
+								openDescription={() => handleOpenProductDescription(kit)}
 							/>
 						))}
 					</PotentialContainer>
@@ -112,6 +135,11 @@ export const Quotation = () => {
 							Developed by <a href="https://github.com/Tava1">Gustavo Santos</a> <FaGithub />
 						</p>
 					</Footer>
+
+					<ProductDescriptionModal
+						isOpen={isDescriptionModalOpen}
+						onRequestClose={handleCloseProductDescription}
+					/>
 				</>
 			)}
 		</>

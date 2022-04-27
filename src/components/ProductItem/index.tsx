@@ -7,6 +7,7 @@ interface ProductItemProps {
 	subPrice: number;
 	totalPrice: number;
 	image: string;
+	openDescription: () => void;
 }
 
 export const ProductItem = ({
@@ -16,6 +17,7 @@ export const ProductItem = ({
 	subPrice,
 	totalPrice,
 	image,
+	openDescription,
 }: ProductItemProps) => {
 	return (
 		<Container>
@@ -64,7 +66,9 @@ export const ProductItem = ({
 			</div>
 
 			<div className="detail">
-				<button type="button">VER DETALHE</button>
+				<button onClick={openDescription} type="button">
+					VER DETALHE
+				</button>
 			</div>
 		</Container>
 	);

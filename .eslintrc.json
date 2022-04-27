@@ -48,8 +48,8 @@
 				"react/require-default-props": "off",
 				"react/no-unused-prop-types": "off",
 				"import/no-unresolved": "off",
-				"react/function-component-definition": "off"
-
+				"react/function-component-definition": "off",
+				"react/no-danger": "off"
     }
 		
 }

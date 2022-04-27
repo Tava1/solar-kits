@@ -5,7 +5,7 @@ import { api } from '@/services/api';
 export function useFetch<T = unknown>(key: string, url: string, config?: AxiosRequestConfig<any>) {
 	const {
 		data: response,
-		isFetching,
+		isLoading,
 		isError,
 	} = useQuery(
 		key,
@@ -19,7 +19,7 @@ export function useFetch<T = unknown>(key: string, url: string, config?: AxiosRe
 		},
 	);
 
-	if (!response) return { response: null, isFetching, isError };
+	if (!response) return { response: null, isLoading, isError };
 
-	return { response, isFetching, isError };
+	return { response, isLoading, isError };
 }

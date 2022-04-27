@@ -1,4 +1,4 @@
-interface Parcela {
+export interface Installment {
 	parcelas: number;
 	taxa_minina: number;
 	taxa_maxima: number;
@@ -6,7 +6,7 @@ interface Parcela {
 	valor_maximo: number;
 }
 
-interface Kit {
+export interface Kit {
 	id: number;
 	qtde: number;
 	valor: number;
@@ -34,7 +34,7 @@ export interface GetQuotation {
 	economia: number;
 	potencial: string;
 	valor_instalacao: number;
-	parcelamento: Parcela[];
+	parcelamento: Installment[];
 	co2: number;
 	kit: Kit[];
 }
