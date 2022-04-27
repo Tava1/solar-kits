@@ -51,3 +51,35 @@ export const TitleSection = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
+
+export const Summary = styled.section`
+	background: var(--primary);
+	color: var(--top-text);
+	padding: 2rem 1rem;
+	text-align: end;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+
+	p {
+		font-weight: 300;
+	}
+
+	.sub-price {
+		margin-bottom: 2rem;
+
+		p:last-child {
+			text-decoration: underline;
+		}
+	}
+`;
+
+export const Footer = styled.footer`
+	p {
+		padding: 2rem;
+		text-align: center;
+		font-weight: 300;
+
+		a {
+			color: var(--black);
+		}
+	}
+`;

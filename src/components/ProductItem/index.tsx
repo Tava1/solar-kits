@@ -1,42 +1,62 @@
 import { Container } from './styles';
-import imgTest from '../../../public/assets/teste.png';
 
-// interface ProductItemProps {
-// 	name: string;
-// 	quantity?: number;
-// 	power?: number;
-// 	subPrice: number;
-// 	totalPrice: number;
-// }
+interface ProductItemProps {
+	name: string;
+	quantity?: number;
+	power?: number;
+	subPrice: number;
+	totalPrice: number;
+	image: string;
+}
 
-export const ProductItem = () => {
+export const ProductItem = ({
+	name,
+	quantity,
+	power,
+	subPrice,
+	totalPrice,
+	image,
+}: ProductItemProps) => {
 	return (
 		<Container>
 			<div className="info">
 				<div className="image">
-					<img src={imgTest} alt="sdksj" />
+					<img src={image} alt="sdksj" />
 				</div>
 				<div className="context">
 					<div className="description">
-						<h2>Módulo solar</h2>
+						<h2>{name}</h2>
+						{power && (
+							<p>
+								Potência: <strong>{power}W</strong>
+							</p>
+						)}
+
 						<p>
-							Potência: <strong>550W</strong>
-						</p>
-						<p>
-							Quantidade: <strong>63</strong>
+							Quantidade: <strong>{quantity}</strong>
 						</p>
 					</div>
 
 					<div className="price">
 						<div className="sub">
 							<span>
-								<strong>R$ 23.696,95</strong>/cada
+								<strong>
+									{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
+										subPrice,
+									)}
+								</strong>
+								/cada
 							</span>
 						</div>
 
 						<div className="total">
 							<span>
-								Total: <strong>R$ 23.696,95</strong>
+								Total:{' '}
+								<strong>
+									{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
+										totalPrice,
+									)}
+								</strong>
 							</span>
 						</div>
 					</div>

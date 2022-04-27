@@ -71,6 +71,7 @@ export const Container = styled.div`
 		left: 0;
 
 		button {
+			cursor: pointer;
 			border: none;
 			background: var(--primary);
 			color: var(--top-text);

@@ -39,7 +39,7 @@ export const IndicatorCard = ({
 				)}
 
 				<div className="current">
-					<span>{current}</span>
+					<span>{Math.round(current * 100) / 100}</span>
 				</div>
 
 				{max && (
