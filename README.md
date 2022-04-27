@@ -12,7 +12,12 @@ A aplicação pode ser visitada a qualquer momento pelo link: [https://solar-kit
 
 Desenvolvi este projeto pensando em uma visualização simples de uma cotação/orçamento de produtos e instalação de equipamentos de energia solar.
 
-Tempo de desenvolvimento do Código: Aproximadamente ⏲️ 7h.
+Tempo de desenvolvimento do Mockup no Figma:
+- Terça-Ferira: Aprox. ⏲️ 2h30.
+
+Tempo de desenvolvimento do Código: 
+- Terça-Ferira: Aprox. ⏲️ 2h30.
+- Quarta-Ferira: ⏲️ 5h33.
 
 ### Tecnologias utilizadas
 - [React](https://pt-br.reactjs.org/)
