@@ -130,18 +130,20 @@ export const Quotation = () => {
 							<h2>KITs</h2>
 						</TitleSection>
 
-						{response.kit.map((kit) => (
-							<ProductItem
-								key={kit.id}
-								name={kit.titulo}
-								quantity={kit.qtde}
-								power={kit.potenciaModulo || kit.potenciaInversor}
-								subPrice={kit.valor}
-								totalPrice={kit.valueTotal}
-								image={kit.url}
-								openDescription={() => handleOpenProductDescription(kit)}
-							/>
-						))}
+						<div className="kits">
+							{response.kit.map((kit) => (
+								<ProductItem
+									key={kit.id}
+									name={kit.titulo}
+									quantity={kit.qtde}
+									power={kit.potenciaModulo || kit.potenciaInversor}
+									subPrice={kit.valor}
+									totalPrice={kit.valueTotal}
+									image={kit.url}
+									openDescription={() => handleOpenProductDescription(kit)}
+								/>
+							))}
+						</div>
 					</PotentialContainer>
 
 					<Summary>

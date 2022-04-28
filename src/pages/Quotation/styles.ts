@@ -5,8 +5,27 @@ export const Structure = styled.section`
 	flex-direction: column;
 	margin: 1rem;
 
-	select {
+	select,
+	label {
 		width: 200px;
+	}
+
+	label {
+		margin-bottom: 5px;
+	}
+
+	@media (min-width: 1024px) {
+		width: 760px;
+		margin: 1rem 7rem;
+
+		select,
+		label {
+			margin-left: 1rem;
+		}
+	}
+
+	@media (min-width: 2560px) {
+		margin: 1rem 14rem;
 	}
 `;
 
@@ -14,6 +33,15 @@ export const QuotationParametersContainer = styled.section`
 	margin: 2rem 0;
 	display: flex;
 	flex-wrap: wrap;
+
+	@media (min-width: 1024px) {
+		width: 760px;
+		margin: 0 7rem;
+	}
+
+	@media (min-width: 2560px) {
+		margin: 0 14rem;
+	}
 `;
 
 export const PotentialContainer = styled.section`
@@ -46,9 +74,29 @@ export const PotentialContainer = styled.section`
 
 	.indicators {
 		margin: 0 1rem;
+
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
+		justify-content: space-between;
+
+		@media (min-width: 1024px) {
+			width: 760px;
+			margin: 0 auto;
+		}
+	}
+
+	.kits {
+		@media (min-width: 1024px) {
+			margin: 0 7rem;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@media (min-width: 2560px) {
+			margin: 0 14rem;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 	}
 `;
 
